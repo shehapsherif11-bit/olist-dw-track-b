@@ -1,0 +1,11 @@
+﻿Changed database context to 'OlistDW_Project'.
+TableName|ExpectedRows|ActualRows|Result
+---------|------------|----------|------
+src.Customers|99441|99441|PASS
+src.Orders|99441|99441|PASS
+src.OrderItems|112650|112650|PASS
+src.Products|32951|32951|PASS
+src.Sellers|3095|3095|PASS
+src.CategoryTranslation|71|71|PASS
+src.Payments|103886|103886|PASS
+src.Reviews|99224|99224|PASS

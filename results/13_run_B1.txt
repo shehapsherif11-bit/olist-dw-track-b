@@ -1,0 +1,38 @@
+﻿Changed database context to 'OlistDW_Project'.
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+1|1|0|2026-11-27 21:22:22.307|2026-11-27 21:22:45.283|Success|252771|161192|0|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|43714|0|0
+dw.DimDeliveryLocation|3408|0|0
+dw.DimProduct|17274|0|0
+dw.DimSeller|1785|0|0
+dw.FactProductMonth|28107|0|0
+dw.FactSales|49557|0|0
+sf.DimCategory|73|0|0
+sf.DimProduct|17274|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+1|LAB FactSales rows|1|1|PASS
+1|LAB sales (BRL)|100.00|100.00|PASS
+1|LAB freight (BRL)|10.00|10.00|PASS
+1|LAB seller versions|1|1|PASS
+1|LAB sales, seller SP|100.00|100.00|PASS
+1|LAB sales, seller RJ|0.00|0.00|PASS
+1|LAB payments (BRL)|110.00|110.00|PASS
+1|LAB customers in DimCustomer|1|1|PASS
+1|SCD0 attempts logged|0|0|PASS
+1|OriginalSellerState on all versions|SP|SP|PASS
+1|Category label (star)|Traning|Traning|PASS
+1|Category label (star, max)|Traning|Traning|PASS
+1|Category label (snowflake)|Traning|Traning|PASS
+1|LAB FactProductMonth sales|100.00|100.00|PASS
+1|LAB FactProductMonth items|1|1|PASS
+1|Last successful batch|1|1|PASS
+SellerKey|SellerID|City|State|OriginalSellerState|ValidFrom|ValidTo|IsCurrent
+---------|--------|----|-----|-------------------|---------|-------|---------
+1785|LAB_SELLER_01|sao paulo|SP|SP|2017-01-01 00:00:00|9999-12-31 00:00:00|1
+BatchID|TableName|IssueType|SourceKey|Reason
+-------|---------|---------|---------|------
+1|stg.Products|WARNING|pc_gamer|No English translation; the code is used as the label. Products: 1

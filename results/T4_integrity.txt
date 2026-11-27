@@ -1,0 +1,27 @@
+﻿Changed database context to 'OlistDW_Project'.
+CheckName|BadRows|Result
+---------|-------|------
+FactSales rows with a missing dimension member|0|PASS
+Duplicate (OrderID, OrderItemID) in FactSales|0|PASS
+Duplicate grain in FactProductMonth|0|PASS
+FactProductMonth keys that are not the first day of a month|0|PASS
+Order, delivery or review dates missing from DimDate|0|PASS
+Real facts purchased outside 2017-01-01 to 2018-08-31|0|PASS
+Facts from orders that are not delivered|0|PASS
+Snowflake view row count different from FactSales|0|PASS
+Products missing in the snowflake|0|PASS
+=== Information: facts that use an unknown member (key 0) ===
+UnknownProduct|UnknownCustomer|UnknownSeller|UnknownLocation
+--------------|---------------|-------------|---------------
+0|0|0|0
+=== Load log ===
+RunID|BatchID|IsForced|Status|StartTime|EndTime|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|------|---------|-------|----------|------------|-----------|------------|---------
+1|1|0|Success|2026-11-27 21:22:22.307|2026-11-27 21:22:45.283|252771|161192|0|0|NULL
+2|2|0|Failed|2026-11-27 21:22:45.934|2026-11-27 21:23:10.570|NULL|NULL|NULL|NULL|Simulated failure (test of rollback and retry).
+3|2|0|Success|2026-11-27 21:23:10.931|2026-11-27 21:23:35.827|231376|134432|3|0|NULL
+4|2|0|Skipped|2026-11-27 21:23:36.115|2026-11-27 21:23:36.115|0|0|0|0|NULL
+5|2|1|Success|2026-11-27 21:23:36.115|2026-11-27 21:23:59.391|231376|0|0|0|NULL
+6|3|0|Success|2026-11-27 21:24:00.850|2026-11-27 21:24:17.481|75090|43706|2|0|NULL
+7|3|0|Skipped|2026-11-27 21:24:18.084|2026-11-27 21:24:18.084|0|0|0|0|NULL
+8|3|1|Success|2026-11-27 21:24:18.100|2026-11-27 21:24:33.118|75090|0|0|0|NULL

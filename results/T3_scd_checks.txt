@@ -1,0 +1,23 @@
+﻿Changed database context to 'OlistDW_Project'.
+=== LAB seller versions ===
+SellerKey|SellerID|City|State|OriginalSellerState|ValidFrom|ValidTo|IsCurrent|InsertedBatchID|LoadedAt
+---------|--------|----|-----|-------------------|---------|-------|---------|---------------|--------
+1785|LAB_SELLER_01|sao paulo|SP|SP|2017-01-01 00:00:00|2018-01-01 00:00:00|0|1|2026-11-27 21:22:39.515
+2726|LAB_SELLER_01|rio de janeiro|RJ|SP|2018-01-01 00:00:00|9999-12-31 00:00:00|1|2|2026-11-27 21:23:28.488
+=== LAB facts and the seller version they use ===
+OrderID|PurchaseTimestamp|InsertedBatchID|SellerKey|State|ValidFrom|ValidTo
+-------|-----------------|---------------|---------|-----|---------|-------
+LAB_ORDER_01|2017-06-10 10:00:00|1|1785|SP|2017-01-01 00:00:00|2018-01-01 00:00:00
+LAB_ORDER_03|2017-11-10 10:00:00|3|1785|SP|2017-01-01 00:00:00|2018-01-01 00:00:00
+LAB_ORDER_02|2018-02-10 10:00:00|2|2726|RJ|2018-01-01 00:00:00|9999-12-31 00:00:00
+CheckName|BadRows|Result
+---------|-------|------
+Sellers without exactly one current row|0|PASS
+Overlapping effective periods|0|PASS
+Sellers whose OriginalSellerState differs between versions|0|PASS
+Real sellers with more than one version (static source)|0|PASS
+Facts outside their seller version period|0|PASS
+LAB_ORDER_01 and LAB_ORDER_03 not on the SP version|0|PASS
+LAB_ORDER_02 not on the RJ version|0|PASS
+lab_training products without the corrected label|0|PASS
+LAB products with more than one ProductKey|0|PASS

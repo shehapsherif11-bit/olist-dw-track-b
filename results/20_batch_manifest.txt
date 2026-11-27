@@ -1,0 +1,72 @@
+﻿Changed database context to 'OlistDW_Project'.
+=== LAB records (all) ===
+BatchName|TableName|SourceKey|Operation|ChangeSeq|EffectiveAt
+---------|---------|---------|---------|---------|-----------
+B1|CategoryTranslation|lab_training|insert|1001|NULL
+B1|Sellers|LAB_SELLER_01|insert|1002|NULL
+B1|Products|LAB_PRODUCT_01|insert|1003|NULL
+B1|Customers|LAB_CUST_01|insert|1004|NULL
+B1|Orders|LAB_ORDER_01|insert|1005|NULL
+B1|OrderItems|LAB_ORDER_01:1|insert|1006|NULL
+B1|Payments|LAB_ORDER_01:1|insert|1007|NULL
+B1|Reviews|LAB_REVIEW_01:LAB_ORDER_01|insert|1008|NULL
+B2|CategoryTranslation|lab_training|update|2001|NULL
+B2|Sellers|LAB_SELLER_01|update|2002|2018-01-01 00:00:00
+B2|Products|LAB_PRODUCT_02|insert|2003|NULL
+B2|Customers|LAB_CUST_02|insert|2004|NULL
+B2|Orders|LAB_ORDER_02|insert|2005|NULL
+B2|OrderItems|LAB_ORDER_02:1|insert|2006|NULL
+B2|Payments|LAB_ORDER_02:1|insert|2007|NULL
+B2|Reviews|LAB_REVIEW_02:LAB_ORDER_02|insert|2008|NULL
+B3|CategoryTranslation|lab_training|update|3000|NULL
+B3|Customers|LAB_CUST_01|update|3000|NULL
+B3|Orders|LAB_ORDER_01|update|3000|NULL
+B3|Products|LAB_PRODUCT_01|update|3000|NULL
+B3|Reviews|LAB_REVIEW_01:LAB_ORDER_01|update|3000|NULL
+B3|Sellers|LAB_SELLER_01|update|3000|2018-01-01 00:00:00
+B3|Customers|LAB_CUST_03|insert|3001|NULL
+B3|Orders|LAB_ORDER_03|insert|3002|NULL
+B3|OrderItems|LAB_ORDER_03:1|insert|3003|NULL
+B3|OrderItems|LAB_ORDER_01:1|update|3004|NULL
+B3|Payments|LAB_ORDER_03:1|insert|3005|NULL
+B3|Payments|LAB_ORDER_01:1|update|3006|NULL
+B3|Reviews|LAB_REVIEW_03:LAB_ORDER_03|insert|3007|NULL
+X1|CategoryTranslation|lab_training|update|4000|NULL
+X1|Products|LAB_PRODUCT_01|update|4000|NULL
+X1|Sellers|LAB_SELLER_01|update|4000|2018-01-01 00:00:00
+X1|Customers|LAB_CUST_X1|insert|4001|NULL
+X1|Orders|LAB_ORDER_X1|insert|4002|NULL
+X1|OrderItems|LAB_ORDER_X1:1|insert|4003|NULL
+X1|Payments|LAB_ORDER_X1:1|insert|4004|NULL
+X1|Reviews|LAB_REVIEW_X1:LAB_ORDER_X1|insert|4005|NULL
+=== Real Olist records (counts) ===
+BatchName|TableName|Operation|Records|FirstChangeSeq|LastChangeSeq
+---------|---------|---------|-------|--------------|-------------
+B1|CategoryTranslation|insert|71|1000|1000
+B1|Customers|insert|45101|1000|1000
+B1|OrderItems|insert|50864|1000|1000
+B1|Orders|insert|45101|1000|1000
+B1|Payments|insert|47525|1000|1000
+B1|Products|insert|17273|1000|1000
+B1|Reviews|insert|45044|1000|1000
+B1|Sellers|insert|1784|1000|1000
+B2|CategoryTranslation|update|70|2000|2000
+B2|Customers|insert|41187|2000|2000
+B2|OrderItems|insert|47075|2000|2000
+B2|Orders|insert|41187|2000|2000
+B2|Payments|insert|42790|2000|2000
+B2|Products|insert|11354|2000|2000
+B2|Products|update|4612|2000|2000
+B2|Reviews|insert|41079|2000|2000
+B2|Sellers|insert|939|2000|2000
+B2|Sellers|update|1075|2000|2000
+B3|CategoryTranslation|update|66|3000|3000
+B3|Customers|insert|12804|3000|3000
+B3|OrderItems|insert|14340|3000|3000
+B3|Orders|insert|12804|3000|3000
+B3|Payments|insert|13205|3000|3000
+B3|Products|insert|4160|3000|3000
+B3|Products|update|3314|3000|3000
+B3|Reviews|insert|12756|3000|3000
+B3|Sellers|insert|345|3000|3000
+B3|Sellers|update|1283|3000|3000

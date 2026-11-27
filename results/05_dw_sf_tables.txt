@@ -1,0 +1,4 @@
+﻿Changed database context to 'OlistDW_Project'.
+DimDateRows|FirstDate|LastDate
+-----------|---------|--------
+731|2017-01-01|2018-12-31

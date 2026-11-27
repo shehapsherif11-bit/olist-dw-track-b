@@ -1,0 +1,6 @@
+# Raw Olist files are not committed. Download them from the link in README.md.
+Data/
+
+# Local tool folders and database backups.
+.claude/
+*.bak

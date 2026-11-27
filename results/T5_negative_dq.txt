@@ -1,0 +1,17 @@
+﻿Changed database context to 'OlistDW_Project'.
+TableName|SourceKey|IssueType|Reason
+---------|---------|---------|------
+stg.OrderItems|BAD_ORDER:1|REJECT|Missing key, or price/freight missing, not a number or negative
+stg.OrderItems|BAD_ORDER:2|REJECT|Missing key, or price/freight missing, not a number or negative
+stg.OrderItems|NO_PARENT:1|REJECT|No identifiable parent order
+stg.Payments|BAD_ORDER:1|REJECT|Conflicting duplicate key: needs a decision
+stg.Payments|BAD_ORDER:1|REJECT|Conflicting duplicate key: needs a decision
+stg.Reviews|BAD_REVIEW:BAD_ORDER|REJECT|Missing key, or review score not between 1 and 5
+stg.Sellers|BAD_SELLER|DUPLICATE|Exact duplicate: first copy kept
+CheckName|Expected|Actual|Result
+---------|--------|------|------
+Items rejected|3|3|PASS
+Conflicting payments rejected|2|2|PASS
+Exact duplicate seller collapsed|1|1|PASS
+Invalid review rejected|1|1|PASS
+Test rows left after rollback|0|0|PASS

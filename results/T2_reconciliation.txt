@@ -1,0 +1,38 @@
+﻿Changed database context to 'OlistDW_Project'.
+=== 1. Source versus warehouse versus independent reference, per batch ===
+BatchID|SourceItems|DwItems|RefItems|SourceSales|DwSales|RefSales|SourceFreight|DwFreight|RefFreight|Result
+-------|-----------|-------|--------|-----------|-------|--------|-------------|---------|----------|------
+1|49556|49556|49556|5962902.01|5962902.01|5962902.01|958633.23|958633.23|958633.23|PASS
+2|46219|46219|46219|5511595.02|5511595.02|5511595.02|926690.83|926690.83|926690.83|PASS
+3|14105|14105|14105|1706530.10|1706530.10|1706530.10|306768.82|306768.82|306768.82|PASS
+=== 2. Exclusions and warnings (rows not loaded must be explained here) ===
+BatchID|TableName|IssueType|Reason|Issues
+-------|---------|---------|------|------
+1|stg.Products|WARNING|No English translation; the code is used as the label. Products: 1|1
+2|dw.DimSeller|SCD0_IGNORED|OriginalSellerState stays SP; incoming value RJ ignored|1
+2|stg.Products|WARNING|No English translation; the code is used as the label. Products: 1|2
+3|stg.Products|WARNING|No English translation; the code is used as the label. Products: 10|1
+3|stg.Products|WARNING|No English translation; the code is used as the label. Products: 2|1
+order_status|OrdersNotInFactSales
+------------|--------------------
+shipped|1097
+unavailable|602
+canceled|580
+processing|299
+invoiced|296
+created|5
+approved|2
+=== 3. FactProductMonth versus a full recompute from FactSales ===
+=== 4. Why product order counts cannot be added (Track B trap) ===
+SumOfProductOrderCounts|SumOfCategoryOrderCounts|DistinctOrders
+-----------------------|------------------------|--------------
+99915|97007|96211
+CheckName|Result
+---------|------
+Batch 1 reconciliation|PASS
+Batch 2 reconciliation|PASS
+Batch 3 reconciliation|PASS
+FactProductMonth = recompute|PASS
+Real product-month rows = 60640|PASS
+vwCategoryMonth totals = FactSales (real)|PASS
+Jan-Aug 2017 and Jan-Aug 2018 sales = reference|PASS

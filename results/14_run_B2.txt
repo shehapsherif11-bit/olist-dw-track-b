@@ -1,0 +1,115 @@
+﻿Changed database context to 'OlistDW_Project'.
+=== BEFORE B2: seller, category labels, LAB facts ===
+SellerKey|SellerID|City|State|OriginalSellerState|ValidFrom|ValidTo|IsCurrent
+---------|--------|----|-----|-------------------|---------|-------|---------
+1785|LAB_SELLER_01|sao paulo|SP|SP|2017-01-01 00:00:00|9999-12-31 00:00:00|1
+Model|ProductKey|ProductID|CategoryCode|CategoryLabelEN
+-----|----------|---------|------------|---------------
+star|17274|LAB_PRODUCT_01|lab_training|Traning
+Model|CategoryKey|CategoryCode|CategoryLabelEN
+-----|-----------|------------|---------------
+snowflake|6|lab_training|Traning
+OrderID|ProductKey|SellerKey|ItemSalesAmount|FreightAmount
+-------|----------|---------|---------------|-------------
+LAB_ORDER_01|17274|1785|100.00|10.00
+=== FAILED ATTEMPT (simulated) ===
+Expected error: Simulated failure (test of rollback and retry).
+RunID|BatchID|Status|ErrorText
+-----|-------|------|---------
+2|2|Failed|Simulated failure (test of rollback and retry).
+CheckName|Expected|Actual|Result
+---------|--------|------|------
+Last successful batch|1|1|PASS
+FactSales rows from B2|0|0|PASS
+Staging orders of B2|0|0|PASS
+LAB seller versions|1|1|PASS
+=== RETRY ===
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+3|2|0|2026-11-27 21:23:10.931|2026-11-27 21:23:35.827|Success|231376|134432|3|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|39719|0|0
+dw.DimDeliveryLocation|740|0|0
+dw.DimProduct|11355|1|0
+dw.DimSeller|940|1|0
+dw.FactProductMonth|24102|0|0
+dw.FactSales|46220|0|0
+sf.DimCategory|1|1|0
+sf.DimProduct|11355|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+2|LAB FactSales rows|2|2|PASS
+2|LAB sales (BRL)|300.00|300.00|PASS
+2|LAB freight (BRL)|30.00|30.00|PASS
+2|LAB seller versions|2|2|PASS
+2|LAB sales, seller SP|100.00|100.00|PASS
+2|LAB sales, seller RJ|200.00|200.00|PASS
+2|LAB payments (BRL)|330.00|330.00|PASS
+2|LAB customers in DimCustomer|1|1|PASS
+2|SCD0 attempts logged|1|1|PASS
+2|OriginalSellerState on all versions|SP|SP|PASS
+2|Category label (star)|Training|Training|PASS
+2|Category label (star, max)|Training|Training|PASS
+2|Category label (snowflake)|Training|Training|PASS
+2|LAB FactProductMonth sales|300.00|300.00|PASS
+2|LAB FactProductMonth items|2|2|PASS
+2|Last successful batch|2|2|PASS
+=== REPLAY B2: the Type 1 and Type 2 changes must create no extra rows ===
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+4|2|0|2026-11-27 21:23:36.115|2026-11-27 21:23:36.115|Skipped|0|0|0|0|NULL
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+5|2|1|2026-11-27 21:23:36.115|2026-11-27 21:23:59.391|Success|231376|0|0|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|0|0|0
+dw.DimDeliveryLocation|0|0|0
+dw.DimProduct|0|0|0
+dw.DimSeller|0|0|0
+dw.FactProductMonth|0|0|0
+dw.FactSales|0|0|0
+sf.DimCategory|0|0|0
+sf.DimProduct|0|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+2|LAB FactSales rows|2|2|PASS
+2|LAB sales (BRL)|300.00|300.00|PASS
+2|LAB freight (BRL)|30.00|30.00|PASS
+2|LAB seller versions|2|2|PASS
+2|LAB sales, seller SP|100.00|100.00|PASS
+2|LAB sales, seller RJ|200.00|200.00|PASS
+2|LAB payments (BRL)|330.00|330.00|PASS
+2|LAB customers in DimCustomer|1|1|PASS
+2|SCD0 attempts logged|1|1|PASS
+2|OriginalSellerState on all versions|SP|SP|PASS
+2|Category label (star)|Training|Training|PASS
+2|Category label (star, max)|Training|Training|PASS
+2|Category label (snowflake)|Training|Training|PASS
+2|LAB FactProductMonth sales|300.00|300.00|PASS
+2|LAB FactProductMonth items|2|2|PASS
+2|Last successful batch|2|2|PASS
+=== AFTER B2: seller, category labels, LAB facts ===
+SellerKey|SellerID|City|State|OriginalSellerState|ValidFrom|ValidTo|IsCurrent
+---------|--------|----|-----|-------------------|---------|-------|---------
+1785|LAB_SELLER_01|sao paulo|SP|SP|2017-01-01 00:00:00|2018-01-01 00:00:00|0
+2726|LAB_SELLER_01|rio de janeiro|RJ|SP|2018-01-01 00:00:00|9999-12-31 00:00:00|1
+Model|ProductKey|ProductID|CategoryCode|CategoryLabelEN
+-----|----------|---------|------------|---------------
+star|17274|LAB_PRODUCT_01|lab_training|Training
+star|39984|LAB_PRODUCT_02|lab_training|Training
+Model|CategoryKey|CategoryCode|CategoryLabelEN
+-----|-----------|------------|---------------
+snowflake|6|lab_training|Training
+OrderID|ProductKey|SellerKey|ItemSalesAmount|FreightAmount
+-------|----------|---------|---------------|-------------
+LAB_ORDER_01|17274|1785|100.00|10.00
+LAB_ORDER_02|39984|2726|200.00|20.00
+BatchID|TableName|IssueType|SourceKey|Reason
+-------|---------|---------|---------|------
+2|stg.Products|WARNING|pc_gamer|No English translation; the code is used as the label. Products: 1
+2|stg.Products|WARNING|portateis_cozinha_e_preparadores_de_alimentos|No English translation; the code is used as the label. Products: 1
+2|dw.DimSeller|SCD0_IGNORED|LAB_SELLER_01|OriginalSellerState stays SP; incoming value RJ ignored
+2|stg.Products|WARNING|pc_gamer|No English translation; the code is used as the label. Products: 1
+2|stg.Products|WARNING|portateis_cozinha_e_preparadores_de_alimentos|No English translation; the code is used as the label. Products: 1

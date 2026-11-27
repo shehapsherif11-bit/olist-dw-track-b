@@ -1,0 +1,6 @@
+﻿Changed database context to 'OlistDW_Project'.
+BatchID|BatchName|PurchaseFrom|PurchaseTo|Description
+-------|---------|------------|----------|-----------
+1|B1|2017-01-01|2018-01-01|Initial full load: orders purchased in 2017 + initial LAB records
+2|B2|2018-01-01|2018-07-01|Incremental: 2018-01 to 2018-06 + SCD Type 0, 1 and 2 changes
+3|B3|2018-07-01|2018-09-01|Incremental: 2018-07 to 2018-08 + late LAB order + LAB correction

@@ -1,0 +1,97 @@
+﻿Changed database context to 'OlistDW_Project'.
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+6|3|0|2026-11-27 21:24:00.850|2026-11-27 21:24:17.481|Success|75090|43706|2|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|12342|0|0
+dw.DimDeliveryLocation|159|0|0
+dw.DimProduct|4160|0|0
+dw.DimSeller|345|0|0
+dw.FactProductMonth|8434|1|0
+dw.FactSales|14106|1|0
+sf.DimCategory|0|0|0
+sf.DimProduct|4160|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+3|LAB FactSales rows|3|3|PASS
+3|LAB sales (BRL)|610.00|610.00|PASS
+3|LAB freight (BRL)|60.00|60.00|PASS
+3|LAB seller versions|2|2|PASS
+3|LAB sales, seller SP|410.00|410.00|PASS
+3|LAB sales, seller RJ|200.00|200.00|PASS
+3|LAB payments (BRL)|670.00|670.00|PASS
+3|LAB customers in DimCustomer|1|1|PASS
+3|SCD0 attempts logged|1|1|PASS
+3|OriginalSellerState on all versions|SP|SP|PASS
+3|Category label (star)|Training|Training|PASS
+3|Category label (star, max)|Training|Training|PASS
+3|Category label (snowflake)|Training|Training|PASS
+3|LAB FactProductMonth sales|610.00|610.00|PASS
+3|LAB FactProductMonth items|3|3|PASS
+3|Last successful batch|3|3|PASS
+OrderID|PurchaseTimestamp|InsertedBatchID|LastBatchID|SellerKey|SellerState|ItemSalesAmount|FreightAmount
+-------|-----------------|---------------|-----------|---------|-----------|---------------|-------------
+LAB_ORDER_01|2017-06-10 10:00:00|1|3|1785|SP|110.00|10.00
+LAB_ORDER_02|2018-02-10 10:00:00|2|2|2726|RJ|200.00|20.00
+LAB_ORDER_03|2017-11-10 10:00:00|3|3|1785|SP|300.00|30.00
+=== REPLAY B3 ===
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+7|3|0|2026-11-27 21:24:18.084|2026-11-27 21:24:18.084|Skipped|0|0|0|0|NULL
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+8|3|1|2026-11-27 21:24:18.100|2026-11-27 21:24:33.118|Success|75090|0|0|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|0|0|0
+dw.DimDeliveryLocation|0|0|0
+dw.DimProduct|0|0|0
+dw.DimSeller|0|0|0
+dw.FactProductMonth|0|0|0
+dw.FactSales|0|0|0
+sf.DimCategory|0|0|0
+sf.DimProduct|0|0|0
+Item|BeforeReplay|AfterReplay|Result
+----|------------|-----------|------
+DimProduct rows|32790.00|32790.00|PASS
+DimCustomer rows|95776.00|95776.00|PASS
+DimDeliveryLocation rows|4308.00|4308.00|PASS
+DimSeller rows|3071.00|3071.00|PASS
+FactSales rows|109883.00|109883.00|PASS
+FactSales sales|13181637.13|13181637.13|PASS
+FactSales freight|2192152.88|2192152.88|PASS
+FactProductMonth rows|60643.00|60643.00|PASS
+FactProductMonth sales|13181637.13|13181637.13|PASS
+FactProductMonth orders|99918.00|99918.00|PASS
+sf.DimCategory rows|75.00|75.00|PASS
+sf.DimProduct rows|32790.00|32790.00|PASS
+Staged records of B3|75090.00|75090.00|PASS
+RunID|TargetTable|RowsInserted|RowsUpdated
+-----|-----------|------------|-----------
+8|dw.DimCustomer|0|0
+8|dw.DimDeliveryLocation|0|0
+8|dw.DimProduct|0|0
+8|dw.DimSeller|0|0
+8|dw.FactProductMonth|0|0
+8|dw.FactSales|0|0
+8|sf.DimCategory|0|0
+8|sf.DimProduct|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+3|LAB FactSales rows|3|3|PASS
+3|LAB sales (BRL)|610.00|610.00|PASS
+3|LAB freight (BRL)|60.00|60.00|PASS
+3|LAB seller versions|2|2|PASS
+3|LAB sales, seller SP|410.00|410.00|PASS
+3|LAB sales, seller RJ|200.00|200.00|PASS
+3|LAB payments (BRL)|670.00|670.00|PASS
+3|LAB customers in DimCustomer|1|1|PASS
+3|SCD0 attempts logged|1|1|PASS
+3|OriginalSellerState on all versions|SP|SP|PASS
+3|Category label (star)|Training|Training|PASS
+3|Category label (star, max)|Training|Training|PASS
+3|Category label (snowflake)|Training|Training|PASS
+3|LAB FactProductMonth sales|610.00|610.00|PASS
+3|LAB FactProductMonth items|3|3|PASS
+3|Last successful batch|3|3|PASS

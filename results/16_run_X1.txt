@@ -1,0 +1,120 @@
+﻿Changed database context to 'OlistDW_Project'.
+=== BEFORE X1: LAB product-month rows ===
+ProductID|MonthStartDateKey|SalesAmount|FreightAmount|ItemCount|DistinctOrderCount
+---------|-----------------|-----------|-------------|---------|------------------
+LAB_PRODUCT_01|20170601|110.00|10.00|1|1
+LAB_PRODUCT_01|20171101|300.00|30.00|1|1
+LAB_PRODUCT_02|20180201|200.00|20.00|1|1
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+9|4|0|2026-11-27 21:24:45.871|2026-11-27 21:24:48.110|Success|8|2|0|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|0|0|0
+dw.DimDeliveryLocation|0|0|0
+dw.DimProduct|0|0|0
+dw.DimSeller|0|0|0
+dw.FactProductMonth|1|0|0
+dw.FactSales|1|0|0
+sf.DimCategory|0|0|0
+sf.DimProduct|0|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+4|LAB FactSales rows|4|4|PASS
+4|LAB sales (BRL)|660.00|660.00|PASS
+4|LAB freight (BRL)|65.00|65.00|PASS
+4|LAB seller versions|2|2|PASS
+4|LAB sales, seller SP|460.00|460.00|PASS
+4|LAB sales, seller RJ|200.00|200.00|PASS
+4|LAB payments (BRL)|725.00|725.00|PASS
+4|LAB customers in DimCustomer|1|1|PASS
+4|SCD0 attempts logged|1|1|PASS
+4|OriginalSellerState on all versions|SP|SP|PASS
+4|Category label (star)|Training|Training|PASS
+4|Category label (star, max)|Training|Training|PASS
+4|Category label (snowflake)|Training|Training|PASS
+4|LAB FactProductMonth sales|660.00|660.00|PASS
+4|LAB FactProductMonth items|4|4|PASS
+4|Last successful batch|4|4|PASS
+=== REPLAY X1 ===
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+10|4|0|2026-11-27 21:24:48.344|2026-11-27 21:24:48.344|Skipped|0|0|0|0|NULL
+RunID|BatchID|IsForced|StartTime|EndTime|Status|RowsStaged|RowsInserted|RowsUpdated|RowsRejected|ErrorText
+-----|-------|--------|---------|-------|------|----------|------------|-----------|------------|---------
+11|4|1|2026-11-27 21:24:48.344|2026-11-27 21:24:49.297|Success|8|0|0|0|NULL
+TargetTable|RowsInserted|RowsUpdated|RowsRejected
+-----------|------------|-----------|------------
+dw.DimCustomer|0|0|0
+dw.DimDeliveryLocation|0|0|0
+dw.DimProduct|0|0|0
+dw.DimSeller|0|0|0
+dw.FactProductMonth|0|0|0
+dw.FactSales|0|0|0
+sf.DimCategory|0|0|0
+sf.DimProduct|0|0|0
+BatchID|CheckName|Expected|Actual|Result
+-------|---------|--------|------|------
+4|LAB FactSales rows|4|4|PASS
+4|LAB sales (BRL)|660.00|660.00|PASS
+4|LAB freight (BRL)|65.00|65.00|PASS
+4|LAB seller versions|2|2|PASS
+4|LAB sales, seller SP|460.00|460.00|PASS
+4|LAB sales, seller RJ|200.00|200.00|PASS
+4|LAB payments (BRL)|725.00|725.00|PASS
+4|LAB customers in DimCustomer|1|1|PASS
+4|SCD0 attempts logged|1|1|PASS
+4|OriginalSellerState on all versions|SP|SP|PASS
+4|Category label (star)|Training|Training|PASS
+4|Category label (star, max)|Training|Training|PASS
+4|Category label (snowflake)|Training|Training|PASS
+4|LAB FactProductMonth sales|660.00|660.00|PASS
+4|LAB FactProductMonth items|4|4|PASS
+4|Last successful batch|4|4|PASS
+RunID|TargetTable|RowsInserted|RowsUpdated
+-----|-----------|------------|-----------
+11|dw.DimCustomer|0|0
+11|dw.DimDeliveryLocation|0|0
+11|dw.DimProduct|0|0
+11|dw.DimSeller|0|0
+11|dw.FactProductMonth|0|0
+11|dw.FactSales|0|0
+11|sf.DimCategory|0|0
+11|sf.DimProduct|0|0
+=== AFTER X1: LAB product-month rows ===
+ProductID|MonthStartDateKey|SalesAmount|FreightAmount|ItemCount|DistinctOrderCount
+---------|-----------------|-----------|-------------|---------|------------------
+LAB_PRODUCT_01|20170601|110.00|10.00|1|1
+LAB_PRODUCT_01|20171101|300.00|30.00|1|1
+LAB_PRODUCT_01|20171201|50.00|5.00|1|1
+LAB_PRODUCT_02|20180201|200.00|20.00|1|1
+CheckName|Expected|Actual|Result
+---------|--------|------|------
+Dec 2017 rows|1.00|1.00|PASS
+Dec 2017 sales|50.00|50.00|PASS
+Dec 2017 freight|5.00|5.00|PASS
+Dec 2017 items|1.00|1.00|PASS
+Dec 2017 orders|1.00|1.00|PASS
+=== Reporting views, LAB rows only (test evidence) ===
+Year|Month|MonthStartDate|CategoryCode|CategoryLabelEN|IsTestData|SalesAmount|FreightAmount|ItemCount|DistinctOrderCount
+----|-----|--------------|------------|---------------|----------|-----------|-------------|---------|------------------
+2017|6|2017-06-01|lab_training|Training|1|110.00|10.00|1|1
+2017|11|2017-11-01|lab_training|Training|1|300.00|30.00|1|1
+2017|12|2017-12-01|lab_training|Training|1|50.00|5.00|1|1
+2018|2|2018-02-01|lab_training|Training|1|200.00|20.00|1|1
+Year|Month|MonthStartDate|CategoryCode|CategoryLabelEN|ProductKey|ProductID|IsTestData|SalesAmount|FreightAmount|ItemCount|DistinctOrderCount|CategorySales|ShareOfCategoryPct|SalesRank
+----|-----|--------------|------------|---------------|----------|---------|----------|-----------|-------------|---------|------------------|-------------|------------------|---------
+2017|6|2017-06-01|lab_training|Training|17274|LAB_PRODUCT_01|1|110.00|10.00|1|1|110.00|100.00|1
+2017|11|2017-11-01|lab_training|Training|17274|LAB_PRODUCT_01|1|300.00|30.00|1|1|300.00|100.00|1
+2017|12|2017-12-01|lab_training|Training|17274|LAB_PRODUCT_01|1|50.00|5.00|1|1|50.00|100.00|1
+2018|2|2018-02-01|lab_training|Training|39984|LAB_PRODUCT_02|1|200.00|20.00|1|1|200.00|100.00|1
+BatchID|TableName|SourceKey|Operation|ChangeSeq|EffectiveAt
+-------|---------|---------|---------|---------|-----------
+4|CategoryTranslation|lab_training|update|4000|NULL
+4|Customers|LAB_CUST_X1|insert|4001|NULL
+4|OrderItems|LAB_ORDER_X1:1|insert|4003|NULL
+4|Orders|LAB_ORDER_X1|insert|4002|NULL
+4|Payments|LAB_ORDER_X1:1|insert|4004|NULL
+4|Products|LAB_PRODUCT_01|update|4000|NULL
+4|Reviews|LAB_REVIEW_X1:LAB_ORDER_X1|insert|4005|NULL
+4|Sellers|LAB_SELLER_01|update|4000|2018-01-01 00:00:00
