@@ -87,6 +87,8 @@
 | `SalesAmount`, `FreightAmount` | DECIMAL(18,2) | additive |
 | `ItemCount` | INT | additive |
 | `DistinctOrderCount` | INT | not additive across products |
+| `LastBatchID` | INT | batch that last recomputed the row |
+| `RefreshedAt` | DATETIME2(3) | time the row was recomputed |
 
 ## sf
 
@@ -102,6 +104,28 @@
 |---|---|---|
 | `mart.vwCategoryMonth` | category x month x IsTestData | sales, freight, items, distinct orders |
 | `mart.vwProductRanking` | product x month x IsTestData | sales, category share, rank inside category |
+
+### mart.vwCategoryMonth columns
+
+| Column | Meaning |
+|---|---|
+| `Year`, `Month`, `MonthStartDate` | purchase month |
+| `CategoryCode`, `CategoryLabelEN` | category; `(no category)` when the source has none |
+| `IsTestData` | 1 = LAB test data |
+| `SalesAmount`, `FreightAmount`, `ItemCount` | additive totals |
+| `DistinctOrderCount` | distinct orders of the category in the month |
+
+### mart.vwProductRanking columns
+
+| Column | Meaning |
+|---|---|
+| `Year`, `Month`, `MonthStartDate` | purchase month |
+| `CategoryCode`, `CategoryLabelEN`, `ProductKey`, `ProductID` | category and product |
+| `IsTestData` | 1 = LAB test data |
+| `SalesAmount`, `FreightAmount`, `ItemCount`, `DistinctOrderCount` | product totals for the month |
+| `CategorySales` | sales of the whole category in that month |
+| `ShareOfCategoryPct` | product sales as a percentage of `CategorySales` |
+| `SalesRank` | 1 = highest sales in the category and month; equal sales share a rank |
 
 ## etl
 
