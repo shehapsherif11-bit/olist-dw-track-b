@@ -172,7 +172,7 @@ Actual results equal these expected values ([13](../results/13_run_B1.txt), [14]
 
 | Member | Contribution |
 |---|---|
-| Shehap Sherif EL-Batanouny | _to be completed_ |
-| Ahmed Hossam | _to be completed_ |
-| Abdulmalek Mahmoud | _to be completed_ |
-| Rohiam Tamer | _to be completed_ |
+| Shehap Sherif EL-Batanouny | ETL and warehouse loads (lead): stored procedures, batches B1 to B3, SCD handling, reset and rebuild |
+| Ahmed Hossam | Schema design and diagrams: star and snowflake schemas, data dictionary, source-to-target mapping |
+| Abdulmalek Mahmoud | Marts, OLAP and queries: mart views, FactProductMonth, OLAP operations, Track B questions |
+| Rohiam Tamer | Tests, report and repository: test scripts T1 to T5, synthetic checks, report, GitHub repository |
